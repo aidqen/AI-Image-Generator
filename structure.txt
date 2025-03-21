@@ -1,6 +1,6 @@
 routes:
 / - homepage
-/new - prompt page, new ai image
+/new - prompt page, new ai image 
 /history - page of the images you already generated
 /profile - your profile page
 /collection - your collection of generated images.
