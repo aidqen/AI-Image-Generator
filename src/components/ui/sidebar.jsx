@@ -118,7 +118,7 @@ function SidebarProvider({
             }
           }
           className={cn(
-            "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
+            "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex flex-col min-h-svh w-full",
             className
           )}
           {...props}>
@@ -160,7 +160,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) [&>button]:hidden bg-[#121826] p-[32px]"
+          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) [&>button]:hidden border-none bg-[#121826] p-[32px]"
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE
