@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppSidebar } from "@/components/AppSidebar";
-import { AppHeader } from "@/components/AppHeader";
+import { AppNavigation } from "@/components/AppNavigation";
 import { Providers } from "@/components/Providers";
 
 const inter = Inter({
@@ -17,10 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased bg-[#121826]`}>
+      <body className={`${inter.variable} antialiased bg-[#0d0e12] pb-32`}>
         <Providers>
-          <AppHeader />
-          <AppSidebar />
+          <AppNavigation />
           {children}
         </Providers>
       </body>

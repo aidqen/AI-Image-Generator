@@ -1,65 +1,30 @@
-'use client'
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Logo } from "./svgs/Logo"
-import { Folder, Grid2x2, History, Sparkles, X } from "lucide-react"
-import { useSelector } from "react-redux"
-import { TOGGLE_SIDEBAR } from "@/store/reducers/system.reducer"
-import { useIsMobile } from "@/hooks/use-mobile"
-import { cn } from "@/lib/utils"
 import { toggleSidebar } from "@/store/actions/system.actions"
 import Link from "next/link"
+import { useSelector } from "react-redux"
+import { UserMenu } from "./UserMenu"
 
-export function AppSidebar() {
-    const isMobile = useIsMobile();
+export function DesktopSidebar({ items }) {
     const open = useSelector((state) => state.systemModule.isSidebarOpen)
-    const items = [
-        {
-            title: "Generate",
-            url: "/generate",
-            icon: (<Sparkles style={{ width: '22px', height: '20px' }} />),
-        },
-        {
-            title: "Feed",
-            url: "/feed",
-            icon: (<Grid2x2 style={{ width: '22px', height: '20px' }} />),
-        },
-        {
-            title: "History",
-            url: "/history",
-            icon: (<History style={{ width: '22px', height: '20px' }} />),
-        },
-        {
-            title: "Collection",
-            url: "/collection",
-            icon: (<Folder style={{ width: '22px', height: '20px' }} />),
-        },
-    ]
-
     function onToggleSidebar() {
         toggleSidebar()
     }
+
     return (
-        <Sidebar open={open} side={`${isMobile ? 'right' : 'left'}`} className={'bg-[#121826]'}>
-            <SidebarHeader>
-                {
-                    isMobile
-                        ? <button className="text-white p-[8px] rounded-lg bg-[#212936] mb-4 w-max"
-                            onClick={onToggleSidebar}>
-                            <X />
-                        </button>
-                        : <Link href={'/'}><Logo /></Link>
-                }
+        <Sidebar open={open} side="left" className={'bg-[#121826]'}>
+            <SidebarHeader className="flex justify-between items-center px-4">
+                <Link href={'/'}><Logo /></Link>
+                <UserMenu />
             </SidebarHeader>
             <SidebarContent >
                 <SidebarGroup>

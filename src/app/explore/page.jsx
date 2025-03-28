@@ -5,6 +5,8 @@ import { Bookmark, Search } from 'lucide-react'
 import { useState } from 'react'
 import { FeedImagePreview } from './components/FeedImagePreview';
 import { TrendingSearches } from './components/TrendingSearches'
+import { FeedImageList } from './components/FeedImagesList';
+import { Searchbar } from './components/Searchbar';
 
 const demoImages = [
     {
@@ -110,6 +112,58 @@ const demoImages = [
             img: 'https://i.pravatar.cc/150?img=8'
         },
         saved: false
+    },
+    {
+        id: 9,
+        url: 'https://picsum.photos/900/600?random=7',
+        prompt: 'Cyberpunk street market',
+        negativePrompt: 'historical, rural, nature, daytime',
+        createdAt: '2025-03-22T18:45:00Z',
+        resolution: '900x600',
+        creator: {
+            name: 'Noah Thompson',
+            img: 'https://i.pravatar.cc/150?img=7'
+        },
+        saved: false
+    },
+    {
+        id: 10,
+        url: 'https://picsum.photos/700/800?random=8',
+        prompt: 'Floating islands in the sky',
+        negativePrompt: 'ground, buildings, vehicles, modern elements',
+        createdAt: '2025-03-22T19:15:00Z',
+        resolution: '700x800',
+        creator: {
+            name: 'Olivia Martinez',
+            img: 'https://i.pravatar.cc/150?img=8'
+        },
+        saved: false
+    },
+    {
+        id: 11,
+        url: 'https://picsum.photos/700/800?random=8',
+        prompt: 'Floating islands in the sky',
+        negativePrompt: 'ground, buildings, vehicles, modern elements',
+        createdAt: '2025-03-22T19:15:00Z',
+        resolution: '700x800',
+        creator: {
+            name: 'Olivia Martinez',
+            img: 'https://i.pravatar.cc/150?img=8'
+        },
+        saved: false
+    },
+    {
+        id: 12,
+        url: 'https://picsum.photos/700/800?random=8',
+        prompt: 'Floating islands in the sky',
+        negativePrompt: 'ground, buildings, vehicles, modern elements',
+        createdAt: '2025-03-22T19:15:00Z',
+        resolution: '700x800',
+        creator: {
+            name: 'Olivia Martinez',
+            img: 'https://i.pravatar.cc/150?img=8'
+        },
+        saved: false
     }
 ];
 
@@ -117,34 +171,20 @@ export default function FeedPage() {
     const [searchQuery, setSearchQuery] = useState('')
 
     return (
-        <div className="flex gap-8 flex-col w-full py-[32px] px-[32px]">
-            <div className="flex flex-col gap-4">
-                <div className="relative w-full">
-                    <input
-                        type="text"
-                        placeholder="Search images by keywords"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full text-[#E4E4E7] text-base font-normal py-3 pl-4 pr-2 rounded-full border-2 border-[#212936] focus:outline-none placeholder:text-[#6C727F]"
-                    />
-                    <button className='absolute right-2 top-1/2 -translate-y-1/2 bg-[#7C71FF] rounded-full p-2'>
-                        <Search className="text-white" />
-                    </button>
-                </div>
+        <div className="flex gap-8 flex-col w-full pt-[24px] px-[24px]">
+            {/* <div className="flex flex-col gap-4"> */}
+                <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+                
 
-                <TrendingSearches
+                {/* <TrendingSearches
                     searchQuery={searchQuery}
                     onSearchSelect={setSearchQuery}
-                />
-            </div>
+                /> */}
+            {/* </div> */}
 
             <div className='flex flex-col gap-3 items-start'>
-                <h3 className='text-white tracking-[-0.24px] text-[18px] font-normal'>Explore Images</h3>
-                <div className="columns-2 md:columns-3 lg:columns-4 gap-6 w-full">
-                    {demoImages.map(image => (
-                        <FeedImagePreview key={image.id} image={image} />
-                    ))}
-                </div>
+                {/* <h3 className='justify-start text-zinc-200 text-xl font-medium'>Explore Images</h3> */}
+                <FeedImageList images={demoImages} />
             </div>
         </div>
     )

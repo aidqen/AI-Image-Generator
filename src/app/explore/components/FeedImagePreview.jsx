@@ -3,24 +3,26 @@
 import { Bookmark } from 'lucide-react'
 import { useState } from 'react'
 import { ImageDetailsModal } from './ImageDetailsModal'
+import { cn } from '@/lib/utils'
 
-export function FeedImagePreview({ image }) {
+export function FeedImagePreview({ image, idx }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     return (
         <>
-            <div 
-                className="feed-image-container relative flex flex-col gap-2 break-inside-avoid mb-4 group"
+            <div
+                className="feed-image-container relative flex flex-col gap-2 break-inside-avoid group"
             >
-                <div 
-                    className="relative overflow-hidden rounded-lg border-2 border-[#212936] cursor-pointer"
+                <div
+                    className="relative overflow-hidden  cursor-pointer"
                     onClick={() => setIsModalOpen(true)}
                 >
                     <img
                         src={image.url}
                         alt={image.prompt}
-                        className="w-full object-cover transition-all duration-300"
-                        loading="lazy"
+                        className={'w-full object-cover border-1 border-black transition-all duration-300'}
+
+                    loading="lazy"
                     />
                     <div className="hover-text opacity-0 absolute inset-0 flex flex-col justify-end p-4 transition-all duration-300 bg-gradient-to-t from-black/80 to-transparent">
                         <p className="text-white text-sm font-medium mb-2">{image.prompt}</p>
@@ -30,7 +32,7 @@ export function FeedImagePreview({ image }) {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-row justify-between w-full items-center'>
+                {/* <div className='flex flex-row justify-between w-full items-center'>
                     <div className="flex flex-row items-center gap-1.5">
                         <img 
                             src={image.creator.img} 
@@ -42,10 +44,10 @@ export function FeedImagePreview({ image }) {
                     <button className={`${image.saved ? 'bg-[#212936]' : 'bg-[#212936]' } rounded-sm p-1.5 transition-colors hover:bg-[#2c3644]`}>
                         <Bookmark className={`${image.saved ? 'fill-white' : 'fill-none'} text-white w-4 h-4`}/>
                     </button>
-                </div>
+                </div> */}
             </div>
 
-            <ImageDetailsModal 
+            <ImageDetailsModal
                 image={image}
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

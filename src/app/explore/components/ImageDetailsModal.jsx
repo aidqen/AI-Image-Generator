@@ -50,7 +50,7 @@ export function ImageDetailsModal({ image, isOpen, onClose }) {
                         </div>
                     </div>
 
-                    <Button className={'bg-[#7C71FF] w-full mt-2 py-5 text-sm font-medium text-white'}><Sparkles className="w-4 h-4" />Generate Using These Settings</Button>
+                    <Button className={'bg-[#7C71FF] w-full mt-2 py-5 text-sm font-medium text-white'}><Sparkles className="w-4 h-4" />Generate With Settings</Button>
                     {/* Creator info */}
                     <div className="flex items-center gap-2 pt-2">
                         <img

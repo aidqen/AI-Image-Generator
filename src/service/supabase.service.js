@@ -110,10 +110,12 @@ export const supabaseService = {
       .from('generated_images')
       .insert({
         user_id: user.id,
-        image_url: imageData.imageUrl,
+        img_url: imageData.imageUrl,
         prompt: imageData.prompt,
+        negative_prompt: imageData.negativePrompt,
         style: imageData.style,
-        aspect_ratio: imageData.aspectRatio,
+        ratio: imageData.aspectRatio,
+        color: imageData.color,
         created_at: new Date().toISOString(),
       })
       .select()
