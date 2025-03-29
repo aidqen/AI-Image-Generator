@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { supabaseService } from '@/service/supabase.service'
+import { useRouter } from 'next/navigation'
 
 export function AuthForm() {
   const [email, setEmail] = useState('')
@@ -11,6 +12,7 @@ export function AuthForm() {
   const [error, setError] = useState(null)
   const [mode, setMode] = useState('signin') // 'signin' or 'signup'
   const [message, setMessage] = useState(null)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -22,7 +24,7 @@ export function AuthForm() {
       if (mode === 'signin') {
         await supabaseService.signInWithPassword(email, password)
         // Redirect or update UI as needed
-        window.location.href = '/'
+        router.replace('/')
       } else {
         await supabaseService.signUp(email, password)
         setMessage('Check your email for the confirmation link')

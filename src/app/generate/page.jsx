@@ -79,14 +79,14 @@ export default function GenerateImage() {
 
         try {
             setIsSaving(true);
-            
+
             await supabaseService.saveGeneratedImage({
                 imageUrl: generatedImage,
                 prompt,
                 style: selectedStyle,
                 aspectRatio: selectedResolution
             });
-            
+
             setIsSaved(true);
         } catch (err) {
             console.error('Failed to save image:', err);
@@ -162,32 +162,10 @@ export default function GenerateImage() {
                     onChange={setGuidance}
                 />
             </div>
-            <button 
-                onClick={handleGenerateImage}
-                disabled={isGenerating || !prompt}
-                className={`flex flex-row items-center justify-center cursor-pointer w-full rounded-xl text-base py-3 font-semibold text-white transition-colors ${
-                    isGenerating || !prompt 
-                        ? 'bg-[#3a3a3a] cursor-not-allowed' 
-                        : 'bg-[#f2330d] hover:bg-[#f2200d]'
-                }`}
-            >
-                {isGenerating ? (
-                    <>
-                        <Loader2 className="mr-2 animate-spin" size={24} /> Generating...
-                    </>
-                ) : (
-                    <>
-                        <Sparkles className="mr-2" size={24} /> Generate Image
-                    </>
-                )}
-            </button>
-            {error && (
-                <div className="text-red-500 text-sm mt-2">{error}</div>
-            )}
             <div className="relative">
                 {isGenerating ? (
                     <div className="w-full bg-[#1E1F25] rounded-xl overflow-hidden relative border border-[#394150]"
-                        style={{ 
+                        style={{
                             aspectRatio: selectedResolution.split(':').join('/'),
                         }}
                     >
@@ -198,21 +176,42 @@ export default function GenerateImage() {
                         </div>
                     </div>
                 ) : generatedImage ? (
-                        <img
-                            src={generatedImage}
-                            alt="Generated image"
-                            className="w-full rounded-xl"
-                            style={{
-                                aspectRatio: selectedResolution.split(':').join('/')
-                            }}
-                        />
+                    <img
+                        src={generatedImage}
+                        alt="Generated image"
+                        className="w-full rounded-xl"
+                        style={{
+                            aspectRatio: selectedResolution.split(':').join('/')
+                        }}
+                    />
                 ) : (
-                    <ImagePlaceholder 
+                    <ImagePlaceholder
                         aspectRatio={selectedResolution.split(':').join('/')}
                         resolution={selectedResolution}
                     />
                 )}
             </div>
+                <button
+                    onClick={handleGenerateImage}
+                    disabled={isGenerating || !prompt}
+                    className={`flex flex-row items-center justify-center cursor-pointer w-full rounded-xl text-base py-3 font-semibold text-white transition-colors ${isGenerating || !prompt
+                            ? 'bg-[#3a3a3a] cursor-not-allowed'
+                            : 'bg-[#f2330d] hover:bg-[#f2200d]'
+                        }`}
+                >
+                    {isGenerating ? (
+                        <>
+                            <Loader2 className="mr-2 animate-spin" size={24} /> Generating...
+                        </>
+                    ) : (
+                        <>
+                            <Sparkles className="mr-2" size={24} /> Generate Image
+                        </>
+                    )}
+                </button>
+                {error && (
+                    <div className="text-red-500 text-sm mt-2">{error}</div>
+                )}
         </div>
     )
 }

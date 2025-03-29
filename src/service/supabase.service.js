@@ -107,7 +107,7 @@ export const supabaseService = {
     if (!user) throw new Error('User not authenticated')
     
     const { data, error } = await supabase
-      .from('generated_images')
+      .from('images')
       .insert({
         user_id: user.id,
         img_url: imageData.imageUrl,
@@ -135,7 +135,7 @@ export const supabaseService = {
     if (!user) throw new Error('User not authenticated')
     
     const { data, error } = await supabase
-      .from('generated_images')
+      .from('images')
       .select('*')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
